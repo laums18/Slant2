@@ -1,0 +1,30 @@
+  {
+    "name": "Slate",
+    "description": "Political bias analyzer for text",
+    "version": "1.0",
+    "manifest_version": 2,
+
+    "browser_action": {
+     // "default_popup": "popup.html",
+      "default_icon": "Slant.png", //insert slant logo here
+      "icons": "Slant.png" //insert slant logo
+    },
+
+    "background":{
+    "scripts": ["background.js"],
+    "persistent": true,
+    "pages": [
+          "http://*/*", 
+          "https://*/*"]
+    },
+
+    "permissions": [
+          "tabs", 
+          "history", 
+          "storage", 
+          "*://*/*", 
+          "http://*/*", 
+          "https://*/*"
+      ]
+
+  }
