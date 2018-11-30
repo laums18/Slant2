@@ -1,24 +1,34 @@
   {
-    "name": "Slate",
+    "name": "Slant",
     "description": "Political bias analyzer for text",
     "version": "1.0",
     "manifest_version": 2,
 
     "browser_action": {
-     // "default_popup": "popup.html",
+      "default_title": "Set AWS Credentials",
+      "default_popup": "popup.html",
       "default_icon": "Slant.png", //insert slant logo here
       "icons": "Slant.png" //insert slant logo
     },
 
-    "background":{
-    "scripts": ["aws-sdk-2.367.0.min.js","background.js"],
-    "persistent": true,
-    "pages": [
-          "http://*/*", 
-          "https://*/*"]
+    "background":
+    {
+    "scripts": ["aws-sdk-2.367.0.min.js","background.js","awsServices.js"],
+
+    "pages": ["http://*/*","https://*/*"]
     },
 
-    "permissions": [
+    "content_scripts": 
+  [
+    {
+      "matches": ["*://*/*"],
+      "css": [ "jquery-ui.css", "extension.css" ],
+      "js": ["jquery.min.js","jquery-ui.min.js"]
+    }
+  ],
+
+    "permissions": 
+      [
           "tabs", 
           "history", 
           "storage", 
