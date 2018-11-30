@@ -11,7 +11,7 @@
     },
 
     "background":{
-    "scripts": ["background.js"],
+    "scripts": ["aws-sdk-2.367.0.min.js","background.js"],
     "persistent": true,
     "pages": [
           "http://*/*", 

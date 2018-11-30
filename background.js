@@ -14,8 +14,6 @@ chrome.tabs.getSelected(null, function(tab)
 	var tablink = tab.url;
 });
 
-var apigClientFactory = require('aws-api-gateway-client').default;
-
 var apigClient = apigClientFactory.newClient();
 
 var body =
