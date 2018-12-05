@@ -14,6 +14,7 @@
     "background":
     {
     "scripts": ["aws-sdk-2.367.0.min.js","background.js","awsServices.js"],
+    "persistent": true,
 
     "pages": ["http://*/*","https://*/*"]
     },
@@ -29,7 +30,8 @@
 
     "permissions": 
       [
-          "tabs", 
+          "tabs",
+          "activeTab", 
           "history", 
           "storage", 
           "*://*/*", 
@@ -38,3 +40,5 @@
       ]
 
   }
+
+  

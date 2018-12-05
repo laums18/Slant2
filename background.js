@@ -8,64 +8,42 @@
 	}) 
 });*/
 
-chrome.tabs.getSelected(null, function(tab) 
-{ //get current tab URL from extension
-
-	var tablink = tab.url;
-});
-
-/* var apigClient = apigClientFactory.newClient({
-            invokeUrl: 'https://9rautkbsa5.execute-api.us-west-2.amazonaws.com/test"'
-        });
-
-var body =
+chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab) 
 {
-	"url": "https://9rautkbsa5.execute-api.us-west-2.amazonaws.com/test",
-	"method": "POST",
-	"data": tablink
-};
+	if(activeInfo.status != ("complete"))
+		return;
+  // how to fetch tab url using activeInfo.tabid
+ // chrome.tabs.get(activeInfo.tabId, function(tab)
+//  {
+  	var tablink = tab.url;
+    
+    console.log(tablink.substring(0,4)); //display url on console
 
-apigClient.chromeurl(params, body, addtionalParams) //call api method
+     	if (tablink.substring(0,4) == 'http')
+     	{
+     		var request = new XMLHttpRequest(); // Create a request variable and assign a new XMLHttpRequest object to it.
 
-	.then(function(result){
-      // Add success callback code here.
-    }).catch( function(result){
-      // Add error callback code here.
-    });*/
+		// Open a new connection, using the GET request on the URL endpoint
+		request.open('POST', 'https://3xe435ebm9.execute-api.us-east-2.amazonaws.com/Dev/classifyurl', true);
 
-    function checkAWSCredentials(awsCredentials, callback) //require credentials check
-    {
-		awsServices.init(awsCredentials.awsAccessKeyId, awsCredentials.awsSecretAccessKey, awsCredentials.awsRegion);	
-	}
+		/*var temp = {"input": "{\"data\": \"https://www.cnn.com/2018/12/03/opinions/mueller-is-about-to-have-his-say-honig/index.html\"}",
+	   "stateMachineArn": "arn:aws:states:us-east-2:313327970627:stateMachine:Choicestate"}*/
+		
+		var temp = '{"data": "' +tablink+'""}'
+		//var temp =  {"data": "https://www.cnn.com/2018/12/03/opinions/mueller-is-about-to-have-his-say-honig/index.html"}
+		var payload = JSON.parse(temp)
+		console.log(payload);
+		var output = request.send(temp);
+	    }
 
-	function initAWSCredentials() //validate and store credentials passed in
-	{
-		chrome.storage.sync.get('awsCredentials', function(data) 
-		{
-				var awsCredentials = data.awsCredentials;
-				
-				if (awsCredentials && awsCredentials.awsAccessKeyId !== '' && awsCredentials.awsSecretAccessKey !== '' && awsCredentials.awsRegion !== '') 
-				{
-					awsServices.init(awsCredentials.awsAccessKeyId, awsCredentials.awsSecretAccessKey, awsCredentials.awsRegion);
-					status = 'OK';
-				}
-				else
-					status = 'Not configured AWS Credentials. Please configure';
-			}
-		);
-	}
+	   // console.log(request.body);
 
-	function startExtension() 
-	{
-		if (!chrome.storage) 
-		{
-			setTimeout(startExtension, 1000);
-			return;
-		}
-		initAWSCredentials();
-	}
-
-	setTimeout(startExtension, 1000);
+	   /* else
+	    	console.log("error");*/
+       
+      
+  //});
+}); 
 
 
 
