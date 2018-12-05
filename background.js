@@ -29,14 +29,17 @@ chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
 		/*var temp = {"input": "{\"data\": \"https://www.cnn.com/2018/12/03/opinions/mueller-is-about-to-have-his-say-honig/index.html\"}",
 	   "stateMachineArn": "arn:aws:states:us-east-2:313327970627:stateMachine:Choicestate"}*/
 		
-		var temp = '{"data": "' +tablink+'""}'
+		var temp = '{"data": "'+tablink+'"}'
+		//var temp2 = {"data": tablink}
 		//var temp =  {"data": "https://www.cnn.com/2018/12/03/opinions/mueller-is-about-to-have-his-say-honig/index.html"}
 		var payload = JSON.parse(temp)
+
 		console.log(payload);
+
 		var output = request.send(temp);
 	    }
 
-	   // console.log(request.body);
+	   console.log(request.body);
 
 	   /* else
 	    	console.log("error");*/
