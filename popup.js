@@ -1,4 +1,4 @@
-/*function loadCredentials() 
+function loadCredentials() 
 {
 	chrome.runtime.sendMessage(
 		{
@@ -63,4 +63,4 @@ $(function() {
 	$('#loadBtn').click(loadCredentials);
 
 	loadCredentials();
-});*/
+});

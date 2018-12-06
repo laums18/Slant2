@@ -35,11 +35,14 @@ chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
 		var payload = JSON.parse(temp)
 
 		console.log(payload);
-
 		var output = request.send(temp);
+		request.onreadystatechange = function() { 
+			var out = request.responseText;
+			console.log(out);
+			document.querySelector('.classifyText').innerHTML = out;
+		};
 	    }
 
-	   console.log(request.body);
 
 	   /* else
 	    	console.log("error");*/
@@ -47,7 +50,3 @@ chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
       
   //});
 }); 
-
-
-
-
