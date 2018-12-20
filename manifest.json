@@ -7,8 +7,8 @@
     "browser_action": {
       "default_title": "Set AWS Credentials",
       "default_popup": "popup.html",
-      "default_icon": "s_slogo.png", //insert slant logo here
-      "icons": "s_slogo.png" //insert slant logo
+      "default_icon": "images/s_slogo.png", //insert slant logo here
+      "icons": "images/s_slogo.png" //insert slant logo
     },
 
     "background":
@@ -23,8 +23,8 @@
   [
     {
       "matches": ["*://*/*"],
-      "css": [ "jquery-ui.css", "extension.css" ],
-      "js": ["jquery.min.js","jquery-ui.min.js"]
+      "css": [ "css/jquery-ui.css", "css/extension.css" ],
+      "js": ["css/jquery.min.js","css/jquery-ui.min.js"]
     }
   ],
 
