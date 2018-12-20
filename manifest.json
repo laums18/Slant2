@@ -7,8 +7,8 @@
     "browser_action": {
       "default_title": "Set AWS Credentials",
       "default_popup": "popup.html",
-      "default_icon": "Slant.png", //insert slant logo here
-      "icons": "Slant.png" //insert slant logo
+      "default_icon": "s_slogo.png", //insert slant logo here
+      "icons": "s_slogo.png" //insert slant logo
     },
 
     "background":
