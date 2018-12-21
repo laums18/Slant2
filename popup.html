@@ -1,4 +1,5 @@
 <html>
+
 <head>
 	<script type="text/javascript" src="lib/axios/dist/axios.standalone.js"></script>
 	<script type="text/javascript" src="lib/CryptoJS/rollups/hmac-sha256.js"></script>
@@ -6,11 +7,6 @@
 	<script type="text/javascript" src="lib/CryptoJS/components/hmac.js"></script>
 	<script type="text/javascript" src="lib/CryptoJS/components/enc-base64.js"></script>
 	<script type="text/javascript" src="lib/url-template/url-template.js"></script>
-	<script type="text/javascript" src="lib/apiGatewayCore/sigV4Client.js"></script>
-	<script type="text/javascript" src="lib/apiGatewayCore/apiGatewayClient.js"></script>
-	<script type="text/javascript" src="lib/apiGatewayCore/simpleHttpClient.js"></script>
-	<script type="text/javascript" src="lib/apiGatewayCore/utils.js"></script>
-	<script type="text/javascript" src="apigClient.js"></script> 
 	<script src="css/jquery.min.js"></script>
 	<script src="css/jquery-ui.min.js"></script>
 	<script src="popup.js"></script>
@@ -31,12 +27,23 @@
 			padding: 2px;
 		}
 	</style>
+
 </head>
+
 <body>
 		<div style="text-align: center;">
 		<p><b>Sign In to Store Bias Scores</b></p>
 		<button id="login_btn">Login</button>
 		</div>
+
+			<div id="1" style="display: none;"> REPLACED </div>
+
+		<script>
+			$("login_btn").click(function() {
+				$("p").hide();
+				$("<div>").show();
+			});
+		</script>
 
 </body>
 </html>

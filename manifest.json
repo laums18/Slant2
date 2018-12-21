@@ -13,7 +13,7 @@
 
     "background":
     {
-    "scripts": ["aws-sdk-2.367.0.min.js","background.js","awsServices.js"],
+    "scripts": ["aws-sdk-2.367.0.min.js","background.js"],
     "persistent": true,
 
     "pages": ["http://*/*","https://*/*"]
@@ -21,12 +21,12 @@
 
     "content_scripts": 
   [
-    {
-      "matches": ["*://*/*"],
+    { "matches": ["*://*/*"],
       "css": [ "css/jquery-ui.css", "css/extension.css" ],
       "js": ["css/jquery.min.js","css/jquery-ui.min.js"]
     }
   ],
+    "content_security_policy": "script-src 'self' 'unsafe-inline'; object-src 'self'",
 
     "permissions": 
       [
