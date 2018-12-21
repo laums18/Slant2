@@ -27,7 +27,7 @@ chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
 		{ 
 			var out = request.responseText;
 			console.log(out);
-			document.querySelector('.classifyText').innerHTML = out; //current way to clean up text in website
+			document.querySelector('.classifyText').innerHTML = out; //current way to display labels in popup
 		};
 	    }
 
