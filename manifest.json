@@ -13,7 +13,7 @@
 
     "background":
     {
-    "scripts": ["aws-sdk-2.367.0.min.js","background.js"],
+    "scripts": ["aws-sdk-2.367.0.min.js","background.js","gauge.js"],
     "persistent": true,
 
     "pages": ["http://*/*","https://*/*"]
@@ -23,10 +23,10 @@
   [
     { "matches": ["*://*/*"],
       "css": [ "css/jquery-ui.css", "css/extension.css" ],
-      "js": ["css/jquery.min.js","css/jquery-ui.min.js"]
+      "js": ["css/jquery.min.js","css/jquery-ui.min.js","gauge.js"]
     }
   ],
-    "content_security_policy": "script-src 'self' 'unsafe-inline'; object-src 'self'",
+    //"content_security_policy": "script-src 'self' 'unsafe-inline'; object-src 'self'",
 
     "permissions": 
       [
