@@ -21,7 +21,8 @@
 
     "content_scripts": 
   [
-    { "matches": ["*://*/*"],
+    {
+      "matches": ["*://*/*"],
       "css": [ "css/jquery-ui.css", "css/extension.css" ],
       "js": ["css/jquery.min.js","css/jquery-ui.min.js"]
     }
