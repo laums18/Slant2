@@ -1,11 +1,11 @@
   {
     "name": "Slant",
-    "description": "Political bias analyzer for text",
-    "version": "1.0",
+    "description": "Political bias analyzer for text and video",
+    "version": "2.0",
     "manifest_version": 2,
 
     "browser_action": {
-      "default_title": "Set AWS Credentials",
+      "default_title": "Slant",
       "default_popup": "popup.html",
       "default_icon": "images/s_slogo.png", //insert slant logo here
       "icons": "images/s_slogo.png" //insert slant logo
@@ -13,7 +13,7 @@
 
     "background":
     {
-    "scripts": ["aws-sdk-2.367.0.min.js","background.js"],
+    "scripts": ["background.js"],
     "persistent": true,
 
     "pages": ["http://*/*","https://*/*"]
@@ -26,7 +26,6 @@
       "js": ["css/jquery.min.js","css/jquery-ui.min.js"]
     }
   ],
-    //"content_security_policy": "script-src 'self' 'unsafe-inline'; object-src 'self'",
 
     "permissions": 
       [
@@ -37,8 +36,9 @@
           "*://*/*", 
           "http://*/*", 
           "https://*/*"
-      ]
+      ],
 
+      "content_security_policy": "script-src 'self' https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js; object-src 'self'"
   }
 
   
