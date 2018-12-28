@@ -4,20 +4,21 @@ Author: Moe Alhassan
 Year: 2019
 */
 
-html {
-			width: 400px;
-			height: 485px;
-		}
+.htmlclasssoitdoesntmessupsites{
+            width: 400px;
+            height: 485px;
+        }
 
 input, select {
-			min-width: 360px;
-			padding: 2px;
-		}
-body{
+            min-width: 360px;
+            padding: 2px;
+        }
+.bodyclasssoitdoesntmessupsites{
     font-family: "Avenir Next", Helvitica, sans-serif;
     width: 400px;
     height: 485px;
 }
+
 .header{
     background-image: url(/images/header.png);
     width: 400px;
@@ -128,3 +129,8 @@ body{
     color: #A0AAE9;
     text-decoration: none;
 }
+
+
+.htmlclasssoitdoesntmessupsites
+.bodyclasssoitdoesntmessupsites{
+   
