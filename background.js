@@ -1,34 +1,90 @@
 //handling url pull from each active chrome tab
-chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab) 
+chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
 {
-	if(activeInfo.status != ("complete"))
-		return;
 
-  	var tablink = tab.url;
-    
-    console.log(tablink.substring(0,4)); //display url on console
-
+  	  var tablink = tab.url;
      	if (tablink.substring(0,4) == 'http')
      	{
      		var request = new XMLHttpRequest(); // initiate http request
+				// Open a new connection, use GET method on the api endpoint
+				request.open('POST', 'https://3xe435ebm9.execute-api.us-east-2.amazonaws.com/Dev/classifyurl', true);
+				var temp = '{"data": "'+tablink+'"}' //append url in a new variable for expected format
+				var payload = JSON.parse(temp)
+				var output = request.send(temp);
 
-		// Open a new connection, use GET method on the api endpoint
-		request.open('POST', 'https://3xe435ebm9.execute-api.us-east-2.amazonaws.com/Dev/classifyurl', true);
-		
-		var temp = '{"data": "'+tablink+'"}' //append url in a new variable for expected format
+				request.onreadystatechange = function()
+				{
+					var out = request.responseText;
+					out = out.substr(1).slice(0, -1);
+					out = out.replace(/u'(?=[^:]+')/g, "'")
+					out = JSON.parse(out);
+					//console.log(out);
+					var prob = out.prob
+					prob = Math.trunc(prob[0] * 100)
+					var party = out.label
+					party = party[0]
+					party = party.replace("__label__", "")
 
-		var payload = JSON.parse(temp)
+          if(party != null)
+          {
+            chrome.storage.local.set({prob: prob}, function() {
+              //console.log('Prob is set to ' + prob);
+            });
 
-		console.log(payload);
+            chrome.storage.local.set({party: party}, function() {
+              //console.log('Party is set to ' + party);
+            });
+          }
 
-		var output = request.send(temp);
+          var color = function(c,n,i,d){for(i=3;i--;c[i]=d<0?0:d>255?255:d|0)d=c[i]+n;return c}
+          var r = 255;
+          var g = 255;
+          var b = 255;
+          var opacity = 255;
+          console.log(party)
+          console.log(prob)
+          if(party == "Democrat" && prob > 50)
+          {
+            r = 25;
+            g = 32;
+            b = 102;
+            opacity = (prob - 50) / 25
+                          if(opacity >= 1)
+                            opacity =  1;
+                          opacity *= 255
+            let c = color([r, g, b], 255 - opacity)
+            c.push(255)
+            chrome.browserAction.setBadgeBackgroundColor({
+                    color: c,
+                    tabId: tab.id
+            })
+            chrome.browserAction.setBadgeText({
+             text: prob.toString(),
+             tabId: tab.id
+           })
+          }
 
-		request.onreadystatechange = function() 
-		{ 
-			var out = request.responseText;
-			console.log(out);
-			document.querySelector('.classifyText').innerHTML = out; //current way to display labels in popup
-		};
+          if(party == "Republican" && prob > 50)
+          {
+            r = 233;
+            g = 29;
+            b = 14;
+            opacity = (prob - 50) / 25
+                          if(opacity >= 1)
+                            opacity =  1;
+                          opacity *= 255
+            let d = color([r, g, b], 255 - opacity)
+            d.push(255)
+            chrome.browserAction.setBadgeBackgroundColor({
+                    color: d,
+                    tabId: tab.id
+            })
+            chrome.browserAction.setBadgeText({
+             text: prob.toString(),
+             tabId: tab.id
+           })
+          }
+
+				};
 	    }
-
-}); 
+});
