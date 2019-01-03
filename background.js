@@ -1,7 +1,6 @@
 //handling url pull from each active chrome tab
 chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
 {
-
   	  var tablink = tab.url;
      	if (tablink.substring(0,4) == 'http')
      	{
@@ -27,12 +26,16 @@ chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
 
           if(party != null)
           {
-            chrome.storage.local.set({prob: prob}, function() {
-              //console.log('Prob is set to ' + prob);
-            });
+            var tId = tab.id;
 
-            chrome.storage.local.set({party: party}, function() {
-              //console.log('Party is set to ' + party);
+            var data = {};
+            data[tId] = {
+              prob: prob,
+              party: party
+            };
+
+            chrome.storage.local.set(data, function() {
+              //console.log('Prob is set to ' + prob);
             });
           }
 
@@ -101,4 +104,17 @@ chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
 
 				};
 	    }
+});
+
+chrome.tabs.onActiveChanged.addListener( function(tabId, info) {
+    var windowId = info.windowId;
+    //console.log(tabId)
+
+    chrome.extension.onConnect.addListener(function(port) {
+       console.log("Connected .....");
+       port.onMessage.addListener(function(msg) {
+
+       });
+       port.postMessage(tabId);
+    })
 });
