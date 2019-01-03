@@ -12,10 +12,11 @@ function animate(){
     });
     c.start();
         };
-        
+
 chrome.storage.local.get(['prob'], function(result) {
   var x = document.getElementById("SlantPopup");
-  x.querySelector('.scoreforslant').innerHTML = result.prob + "%"; //current way to display labels in popup
+  let outProb = ((result.prob - 50)) * 2
+  x.querySelector('.scoreforslant').innerHTML = outProb + "%"; //current way to display labels in popup
 });
 
 chrome.storage.local.get(['party'], function(result) {

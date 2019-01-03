@@ -7,8 +7,10 @@
     "browser_action": {
       "default_title": "Slant",
       "default_popup": "popup.html",
-      "default_icon": "images/s_slogo.png", //insert slant logo here
-      "icons": "images/s_slogo.png" //insert slant logo
+      "default_icon": "images/s_slogo.png",
+      "icons": {"16": "images/s_slogo.png",
+                "48": "images/s_slogo.png",
+                "128": "images/s_slogo.png" }
     },
 
     "background":
@@ -19,7 +21,7 @@
     "pages": ["http://*/*","https://*/*"]
     },
 
-    "content_scripts": 
+    "content_scripts":
   [
     {
       "matches": ["*://*/*"],
@@ -28,18 +30,16 @@
     }
   ],
 
-    "permissions": 
+    "permissions":
       [
           "tabs",
-          "activeTab", 
-          "history", 
-          "storage", 
-          "*://*/*", 
-          "http://*/*", 
+          "activeTab",
+          "history",
+          "storage",
+          "*://*/*",
+          "http://*/*",
           "https://*/*"
       ],
 
       "content_security_policy": "script-src 'self' https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js; object-src 'self'"
   }
-
-  

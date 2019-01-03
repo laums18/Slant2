@@ -58,8 +58,9 @@ chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
                     color: c,
                     tabId: tab.id
             })
+            let outProb = ((prob - 50)) * 2
             chrome.browserAction.setBadgeText({
-             text: prob.toString(),
+             text: outProb.toString(),
              tabId: tab.id
            })
           }
@@ -79,8 +80,21 @@ chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
                     color: d,
                     tabId: tab.id
             })
+            let outProb = ((prob - 50)) * 2
             chrome.browserAction.setBadgeText({
-             text: prob.toString(),
+             text: outProb.toString(),
+             tabId: tab.id
+           })
+          }
+          if(prob == 50)
+          {
+            chrome.browserAction.setBadgeBackgroundColor({
+                    color: "black",
+                    tabId: tab.id
+            })
+            let outProb = 0;
+            chrome.browserAction.setBadgeText({
+             text: outProb.toString(),
              tabId: tab.id
            })
           }
