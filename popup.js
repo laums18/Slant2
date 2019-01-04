@@ -1,5 +1,5 @@
 
-//use button "Login" and redirect to cognito front end and delete popup contents
+//use user icon to redirect to cognito front end and authenticate
 function clickHandler(e) {
 
     chrome.tabs.create({url:"https://slant.auth.us-west-2.amazoncognito.com/login?response_type=token&client_id=68qqmdg46ulqtqffpuhjqu88ke&redirect_uri=https://psalabs.us"});
