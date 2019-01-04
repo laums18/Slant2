@@ -13,21 +13,31 @@ function animate(){
     c.start();
         };
 
-chrome.storage.local.get(['prob'], function(result) {
-  var x = document.getElementById("SlantPopup");
-  let outProb = ((result.prob - 50)) * 2
-  x.querySelector('.scoreforslant').innerHTML = outProb + "%"; //current way to display labels in popup
+var port = chrome.extension.connect({
+   name: "Bias Data"
+});
+
+port.onMessage.addListener(function(msg) {
+     console.log("message recieved " + msg);
+     var tabId = msg.toString();
+     chrome.storage.local.get(tabId, function(result) {
+       //console.log(result[tabId].prob)
+       //console.log(result[tabId].party)
+       var x = document.getElementById("SlantPopup");
+       let outProb = ((result[tabId].prob - 50)) * 2
+       x.querySelector('.scoreforslant').innerHTML = outProb + "%"; //current way to display labels in popup
+
+       var y = document.getElementById("SlantPopup2");
+       y.querySelector('.partyforslant').innerHTML = result[tabId].party;
+     });
+
 });
 
 chrome.storage.local.get(['party'], function(result) {
-  var y = document.getElementById("SlantPopup2");
-  y.querySelector('.partyforslant').innerHTML = result.party;
+  //var y = document.getElementById("SlantPopup2");
+  //y.querySelector('.partyforslant').innerHTML = result.party;
 });
 
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('login_btn').addEventListener('click', clickHandler);
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-  document.getElementById('target_animate').addEventListener('mouseover', animate);
 });
