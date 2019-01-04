@@ -56,9 +56,10 @@ Year: 2019
     margin: 0px;
 }
 .containforslant{
-    width: 400px;
+    width: 350px;
     height: 290px;
     clear: both;
+    margin: auto;
 }
 .footerforslant{
     width: 400px;
@@ -131,4 +132,21 @@ Year: 2019
 .nothingsforslant:active{
     color: #A0AAE9;
     text-decoration: none;
+}
+
+.titleforslant{
+    font-family: "Avenir", "Helvetica", sans-serif;
+    font-weight: 600;
+}
+.keywordsforslant{
+    
+    
+}
+#cardforslant{
+    vertical-align: middle;
+    margin: auto;
+    top: 20px;
+}
+.list-group{
+    margin-bottom: 0px !important;
 }

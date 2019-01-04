@@ -31,7 +31,8 @@ port.onMessage.addListener(function(msg) {
 
        document.getElementById("SlantTitle").querySelector('.titleforslant').innerHTML = result[tabId].title;
 
-       document.getElementById("SlantKeywords").querySelector('.keywordsforslant').innerHTML = result[tabId].keywords;
+       document.getElementById("SlantKeywords").querySelector('.keywordsforslant').innerHTML = result[tabId].keywords.slice(0, 5);
+         document.getElementById("SlantSummary").querySelector('.summaryforslant').innerHTML = result[tabId].summary
      });
 
 });
