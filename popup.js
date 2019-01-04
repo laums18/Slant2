@@ -21,14 +21,17 @@ port.onMessage.addListener(function(msg) {
      console.log("message recieved " + msg);
      var tabId = msg.toString();
      chrome.storage.local.get(tabId, function(result) {
-       //console.log(result[tabId].prob)
-       //console.log(result[tabId].party)
+
        var x = document.getElementById("SlantPopup");
        let outProb = ((result[tabId].prob - 50)) * 2
        x.querySelector('.scoreforslant').innerHTML = outProb + "%"; //current way to display labels in popup
 
        var y = document.getElementById("SlantPopup2");
        y.querySelector('.partyforslant').innerHTML = result[tabId].party;
+
+       document.getElementById("SlantTitle").querySelector('.titleforslant').innerHTML = result[tabId].title;
+
+       document.getElementById("SlantKeywords").querySelector('.keywordsforslant').innerHTML = result[tabId].keywords;
      });
 
 });

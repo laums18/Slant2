@@ -14,16 +14,17 @@ chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
 				request.onreadystatechange = function()
 				{
 					var out = request.responseText;
-					out = out.substr(1).slice(0, -1);
-					out = out.replace(/u'(?=[^:]+')/g, "'")
-					out = JSON.parse(out);
-					//console.log(out);
-					var prob = out.prob
+          out = JSON.parse(JSON.parse(out))
+          var prob = out.prob
 					prob = Math.trunc(prob[0] * 100)
 					var party = out.label
 					party = party[0]
 					party = party.replace("__label__", "")
-
+          var title = out.title
+          var keywords = out.keywords
+          console.log(title)
+          console.log(keywords)
+          
           if(party != null)
           {
             var tId = tab.id;
@@ -31,7 +32,9 @@ chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
             var data = {};
             data[tId] = {
               prob: prob,
-              party: party
+              party: party,
+              title: title,
+              keywords: keywords
             };
 
             chrome.storage.local.set(data, function() {
