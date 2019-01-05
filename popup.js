@@ -1,5 +1,5 @@
 
-//use user icon to redirect to cognito front end and authenticate
+//use button "Login" and redirect to cognito front end and delete popup contents
 function clickHandler(e) {
 
     chrome.tabs.create({url:"https://slant.auth.us-west-2.amazoncognito.com/login?response_type=token&client_id=68qqmdg46ulqtqffpuhjqu88ke&redirect_uri=https://psalabs.us"});
@@ -30,9 +30,8 @@ port.onMessage.addListener(function(msg) {
        y.querySelector('.partyforslant').innerHTML = result[tabId].party;
 
        document.getElementById("SlantTitle").querySelector('.titleforslant').innerHTML = result[tabId].title;
-
-       document.getElementById("SlantKeywords").querySelector('.keywordsforslant').innerHTML = result[tabId].keywords.slice(0, 5).join(', ');
-         document.getElementById("SlantSummary").querySelector('.summaryforslant').innerHTML = result[tabId].summary
+       document.getElementById("SlantSummary").querySelector('.summaryforslant').innerHTML = result[tabId].summary;
+       document.getElementById("SlantKeywords").querySelector('.keywordsforslant').innerHTML = result[tabId].keywords;
      });
 
 });
