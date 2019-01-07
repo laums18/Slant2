@@ -6,7 +6,7 @@ Year: 2019
 
 .htmlforslant{
 			width: 400px;
-			height: 485px;
+			height: 100%;
 		}
 
 .inputforslant{
@@ -20,7 +20,7 @@ Year: 2019
 .bodyforslant{
     font-family: "Avenir Next", Helvitica, sans-serif;
     width: 400px;
-    height: 485px;
+    height: 100%;;
 }
 .headerforslant{
     background-image: url(/images/header.png);
@@ -57,16 +57,18 @@ Year: 2019
 }
 .containforslant{
     width: 350px;
-    height: 290px;
     clear: both;
     margin: auto;
+    margin-bottom: 10px;
+    max-height: 405px;
 }
 .footerforslant{
     width: 400px;
-    height: 73px;
+    height: 50px;
     background-color: #E9ECFC;
     position: relative;
     bottom: 0px;
+    margin-top: 10px;
 
 }
 .glyphsforslant{
@@ -142,10 +144,24 @@ Year: 2019
     
     
 }
+.summaryforslant{
+    height: inherit;
+    overflow-y: scroll;
+}
 #cardforslant{
     vertical-align: middle;
-    margin: auto;
+    margin: auto auto 20px auto;
     top: 20px;
+}
+.card{
+    max-height: 405px;
+    overflow-y: scroll;
+    margin-bottom: 20px;
+
+}
+.card-body{
+    overflow-y: scroll;
+    max-height: 265px;
 }
 .list-group{
     margin-bottom: 0px !important;
