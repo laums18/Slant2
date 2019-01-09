@@ -20,7 +20,7 @@ chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
 
         var request1 = new XMLHttpRequest(); 
         request1.open('POST', 'https://xu7y0i4je8.execute-api.us-east-2.amazonaws.com/test/token', true);
-        var temp1 = '{"data": "'+tablink+'"}' //append url in a new variable for expected format
+        var temp1 = '{"token": "'+tablink+'"}' //append url in a new variable for expected format
         var payload1 = JSON.parse(temp1)
         var output1 = request1.send(temp1);
       })}
