@@ -15,12 +15,12 @@ chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
       {
         var TokenUrl = {};
         chrome.storage.local.set(TokenUrl, function(){
-        console.log('token url:' + tablink);
-        //console.log(tablink);
+        var tablink_new = tablink.slice(29, 1110);
+        console.log('only token:' +tablink_new);
 
         var request1 = new XMLHttpRequest(); 
         request1.open('POST', 'https://xu7y0i4je8.execute-api.us-east-2.amazonaws.com/test/token', true);
-        var temp1 = '{"token": "'+tablink+'"}' //append url in a new variable for expected format
+        var temp1 = '{"token": "'+tablink_new+'"}' //append url in a new variable for expected format
         var payload1 = JSON.parse(temp1)
         var output1 = request1.send(temp1);
       })}
