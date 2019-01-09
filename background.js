@@ -16,11 +16,12 @@ chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
         var TokenUrl = {};
         chrome.storage.local.set(TokenUrl, function(){
         var tablink_new = tablink.slice(29, 1110);
-        console.log('only token:' +tablink_new);
+        console.log('Token:'+tablink_new);
 
         var request1 = new XMLHttpRequest(); 
         request1.open('POST', 'https://xu7y0i4je8.execute-api.us-east-2.amazonaws.com/test/token', true);
-        var temp1 = '{"token": "'+tablink_new+'"}' //append url in a new variable for expected format
+        var temp1 = '{"token": "'+tablink_new+'", "url": "'+tablink+'"}' //append url in a new variable for expected format
+        console.log(temp1);
         var payload1 = JSON.parse(temp1)
         var output1 = request1.send(temp1);
       })}
