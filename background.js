@@ -26,6 +26,19 @@ chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
     var payload = JSON.parse(temp)
     var output = request.send(temp);
 
+    var request2 = new XMLHttpRequest(); 
+    request2.open('GET', 'https://agpgq1x878.execute-api.us-east-2.amazonaws.com/dev', true);
+    request2.onreadystatechange = processRequest;
+
+    function processRequest (e)
+    {
+      if (request2.readyState == 4 && request2.status == 200)
+      {
+        var response = JSON.parse(request2.responseText);
+        console.log(response)
+      }
+    }
+
     request.onreadystatechange = function()
     {
       var out = request.responseText;
