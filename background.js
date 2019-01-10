@@ -14,7 +14,6 @@ chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
       if (tablink.substring(0,15) == 'https://psalabs')
       {
         var TokenUrl = {};
-        chrome.storage.local.set(TokenUrl, function(){
         var tablink_new = tablink.slice(29, 1110);
         console.log('Token:'+tablink_new);
 
@@ -24,7 +23,9 @@ chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
         console.log(temp1);
         var payload1 = JSON.parse(temp1)
         var output1 = request1.send(temp1);
-      })}
+      }
+
+          chrome.storage.local.set(tablink_new, function(){});
 
 				request.onreadystatechange = function()
 				{
