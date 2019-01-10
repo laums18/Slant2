@@ -30,6 +30,7 @@ port.onMessage.addListener(function(msg) {
        document.getElementById("SlantTitle").querySelector('.titleforslant').innerHTML = result[tabId].title;
        document.getElementById("SlantSummary").querySelector('.summaryforslant').innerHTML = result[tabId].summary;
        document.getElementById("SlantKeywords").querySelector('.keywordsforslant').innerHTML = result[tabId].keywords.slice(0, 5).join(', ');
+       document.getElementById("SlantUsername").querySelector('.usernameforslant').innerHTML = result[tabId].uid;
      });
 
 });
