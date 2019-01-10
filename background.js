@@ -14,25 +14,31 @@ chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
       if (tablink.substring(0,15) == 'https://psalabs')
       {
         var TokenUrl = {};
+        chrome.storage.local.set(TokenUrl, function(){
         var tablink_new = tablink.slice(29, 1110);
-        console.log('Token:'+tablink_new);
+        console.log('only token:' +tablink_new);
 
         var request1 = new XMLHttpRequest(); 
         request1.open('POST', 'https://xu7y0i4je8.execute-api.us-east-2.amazonaws.com/test/token', true);
-        var temp1 = '{"token": "'+tablink_new+'", "url": "'+tablink+'"}' //append url in a new variable for expected format
-        console.log(temp1);
+        var temp1 = '{"token": "'+tablink_new+'"}' //append url in a new variable for expected format
         var payload1 = JSON.parse(temp1)
         var output1 = request1.send(temp1);
-      }
-
-          chrome.storage.local.set(tablink_new, function(){});
+      })}
 
 				request.onreadystatechange = function()
 				{
 					var out = request.responseText;
           out = JSON.parse(JSON.parse(out))
           var prob = out.prob
-					prob = Math.trunc(prob[0] * 100)
+          console.log(prob)
+          if(prob[0] == 0)
+          {
+            prob = 50;
+          }
+          else
+          {
+            prob = Math.trunc(prob[0] * 100)
+          }
 					var party = out.label
 					party = party[0]
 					party = party.replace("__label__", "")
