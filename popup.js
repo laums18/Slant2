@@ -11,10 +11,6 @@ function upload(){
     document.getElementById('bodyshift').innerHTML=newbody
 };
 
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('SendVideo').addEventListener('click', upload);
-});
-
 var port = chrome.extension.connect({
    name: "Bias Data"
 });
@@ -45,4 +41,8 @@ chrome.storage.local.get(['party'], function(result) {
 
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('login_btn').addEventListener('click', clickHandler);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('SendVideo').addEventListener('click', upload);
 });
