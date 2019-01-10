@@ -6,12 +6,14 @@ function clickHandler(e) {
     window.close(); //
 };
 
-function animate(){
-    var c = new CountUp("target_animate",0,30,0,1, {
-        useEasing: true
-    });
-    c.start();
-        };
+function upload(){
+    var newbody = '<form class=\"md-form\"><div class=\"file-field\"><a class=\"btn-floating purple-gradient mt-0 float-left\"><i class=\"fas fa-cloud-upload-alt\"></i><input type=\"file\"></a><div class=\"file-path-wrapper\"><input class=\"file-path validate\" type=\"text\" placeholder=\"Upload your file\"></div></div></form>'
+    document.getElementById('bodyshift').innerHTML=newbody
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('SendVideo').addEventListener('click', upload);
+});
 
 var port = chrome.extension.connect({
    name: "Bias Data"
