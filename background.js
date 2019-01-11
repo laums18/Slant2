@@ -26,6 +26,28 @@ chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
     var payload = JSON.parse(temp)
     var output = request.send(temp);
 
+    var request2 = new XMLHttpRequest(); 
+    request2.open('GET', 'https://agpgq1x878.execute-api.us-east-2.amazonaws.com/dev/userinfo', true);
+    chrome.storage.local.get(['userId'], function(result) {
+    var userName =  {
+      uid: result.userId
+    }
+    console.log(userName);
+
+    var userName2 = JSON.stringify(userName)
+    request2.send('"uid":"'+userName2+'"')
+
+    request2.onreadystatechange = function ()
+    {
+      console.log('Get Return:'+ request2.responseText);
+      var returnstuff = JSON.parse(request2.responseText);
+      //console.log('Parse return:' +returnstuff);
+      chrome.storage.local.set({dynamoList:request2.responseText},function(){
+      //console.log('Get response:' + getreturn);
+      });
+    }
+    });
+
     request.onreadystatechange = function()
     {
       var out = request.responseText;
@@ -53,6 +75,7 @@ chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
           var data = {};
           data[tId] = {
             uid: result.userId,
+            url: tablink,
             prob: prob,
             party: party,
             title: title,
@@ -61,8 +84,19 @@ chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
           };
         
           chrome.storage.local.set(data, function() {
-            console.log(data)
+            //console.log(data)
           });
+          console.log('Sending to DB:' + data[tId]);
+
+          let request4 = new XMLHttpRequest(); // initiate http request
+          // Open a new connection, use GET method on the api endpoint
+          request4.open('POST', 'https://3xe435ebm9.execute-api.us-east-2.amazonaws.com/Dev/put-dynamodb', true);
+          let output4 = request4.send(JSON.stringify(data[tId]));
+          request.onreadystatechange = function()
+          {
+            console.log("Done");
+          }
+
         });
       }
 
