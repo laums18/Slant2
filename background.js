@@ -87,16 +87,21 @@ chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
             //console.log(data)
           });
           console.log('Sending to DB:' + data[tId]);
-
-          let request4 = new XMLHttpRequest(); // initiate http request
-          // Open a new connection, use GET method on the api endpoint
-          request4.open('POST', 'https://3xe435ebm9.execute-api.us-east-2.amazonaws.com/Dev/put-dynamodb', true);
-          let output4 = request4.send(JSON.stringify(data[tId]));
-          request.onreadystatechange = function()
+          if(prob == 50)
           {
-            console.log("Done");
+            //No Party
           }
-
+          else
+          {
+            let request4 = new XMLHttpRequest(); // initiate http request
+            // Open a new connection, use GET method on the api endpoint
+            request4.open('POST', 'https://3xe435ebm9.execute-api.us-east-2.amazonaws.com/Dev/put-dynamodb', true);
+            let output4 = request4.send(JSON.stringify(data[tId]));
+            request.onreadystatechange = function()
+            {
+              console.log("Done");
+            }
+          }
         });
       }
 
