@@ -28,7 +28,14 @@ chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
 
     var request2 = new XMLHttpRequest(); 
     request2.open('GET', 'https://agpgq1x878.execute-api.us-east-2.amazonaws.com/dev/userinfo', true);
-    request2.send();
+    chrome.storage.local.get(['userId'], function(result) {
+    var userName =  {
+      uid: result.userId
+    }
+    console.log(userName);
+
+    var userName2 = JSON.stringify(userName)
+    request2.send('"uid":"'+userName2+'"')
 
     request2.onreadystatechange = function ()
     {
@@ -39,6 +46,7 @@ chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
       //console.log('Get response:' + getreturn);
       });
     }
+    });
 
     request.onreadystatechange = function()
     {
