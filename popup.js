@@ -11,6 +11,14 @@ function upload(){
     document.getElementById('bodyshift').innerHTML=newbody
 };
 
+function biasview(){
+
+       chrome.storage.local.get(apiReturn, function){
+        //display on document.getElementById("SlantPopup") is CLICKED
+        //MOE FILL IN UR MAGIC HERE
+     }
+}
+
 var port = chrome.extension.connect({
    name: "Bias Data"
 });
@@ -46,4 +54,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('SendVideo').addEventListener('click', upload);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('SlantPopup').addEventListener('click', biasview);
 });

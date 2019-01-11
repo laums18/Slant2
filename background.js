@@ -37,14 +37,16 @@ chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
     //DONT CHANGE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     request2.send(JSON.stringify(userName));
     console.log(userName);
+    }); //chrome storage get end
+
     //extension display stuff
     request2.onreadystatechange = function ()
     {
-      console.log('Dynamo Items:'+ request2.responseText);
-      chrome.storage.local.set({dynamoList:request2.responseText},function(){});
+      console.log('Bias:'+ request2.responseText);
+      var apiReturn = request2.responseText;
+      chrome.storage.local.set({Bias:apiReturn},function(){});
     }
-    }); //chrome storage end
-
+    
     request.onreadystatechange = function()
     {
       var out = request.responseText;
