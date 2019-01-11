@@ -11,13 +11,13 @@ function upload(){
     document.getElementById('bodyshift').innerHTML=newbody
 };
 
-function biasview(){
+// function biasview(){
 
-       chrome.storage.local.get(apiReturn, function){
-        //display on document.getElementById("SlantPopup") is CLICKED
-        //MOE FILL IN UR MAGIC HERE
-     }
-}
+//        chrome.storage.local.get(apiReturn, function){
+//         //display on document.getElementById("SlantPopup") is CLICKED
+//         //MOE FILL IN UR MAGIC HERE
+//      }
+// }
 
 var port = chrome.extension.connect({
    name: "Bias Data"
