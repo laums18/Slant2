@@ -19,34 +19,31 @@ chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
 
   if (tablink.substring(0,4) == 'http')
   {
-    var request = new XMLHttpRequest(); // initiate http request
+    //first request for sagemaker classify
+    var request = new XMLHttpRequest(); 
     // Open a new connection, use GET method on the api endpoint
     request.open('POST', 'https://3xe435ebm9.execute-api.us-east-2.amazonaws.com/Dev/classifyurl', true);
     var temp = '{"data": "'+tablink+'"}' //append url in a new variable for expected format
     var payload = JSON.parse(temp)
     var output = request.send(temp);
 
+    //second request for dynamo user info pull
     var request2 = new XMLHttpRequest(); 
-    request2.open('GET', 'https://agpgq1x878.execute-api.us-east-2.amazonaws.com/dev/userinfo', true);
+    request2.open('POST', 'https://agpgq1x878.execute-api.us-east-2.amazonaws.com/dev/userinfo', true);
     chrome.storage.local.get(['userId'], function(result) {
     var userName =  {
       uid: result.userId
     }
+    //DONT CHANGE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    request2.send(JSON.stringify(userName));
     console.log(userName);
-
-    var userName2 = JSON.stringify(userName)
-    request2.send('"uid":"'+userName2+'"')
-
+    //extension display stuff
     request2.onreadystatechange = function ()
     {
-      console.log('Get Return:'+ request2.responseText);
-      var returnstuff = JSON.parse(request2.responseText);
-      //console.log('Parse return:' +returnstuff);
-      chrome.storage.local.set({dynamoList:request2.responseText},function(){
-      //console.log('Get response:' + getreturn);
-      });
+      console.log('Dynamo Items:'+ request2.responseText);
+      chrome.storage.local.set({dynamoList:request2.responseText},function(){});
     }
-    });
+    }); //chrome storage end
 
     request.onreadystatechange = function()
     {
