@@ -27,16 +27,17 @@ chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
     var output = request.send(temp);
 
     var request2 = new XMLHttpRequest(); 
-    request2.open('GET', 'https://agpgq1x878.execute-api.us-east-2.amazonaws.com/dev', true);
-    request2.onreadystatechange = processRequest;
+    request2.open('GET', 'https://agpgq1x878.execute-api.us-east-2.amazonaws.com/dev/userinfo', true);
+    request2.send();
 
-    function processRequest (e)
+    request2.onreadystatechange = function ()
     {
-      if (request2.readyState == 4 && request2.status == 200)
-      {
-        var response = JSON.parse(request2.responseText);
-        console.log(response)
-      }
+      console.log('Get Return:'+ request2.responseText);
+      var returnstuff = JSON.parse(request2.responseText);
+      //console.log('Parse return:' +returnstuff);
+      chrome.storage.local.set({dynamoList:request2.responseText},function(){
+      //console.log('Get response:' + getreturn);
+      });
     }
 
     request.onreadystatechange = function()
