@@ -42,9 +42,8 @@ chrome.tabs.onUpdated.addListener(function(id,activeInfo,tab)
     //extension display stuff
     request2.onreadystatechange = function ()
     {
-      console.log('Bias:'+ request2.responseText);
       var apiReturn = request2.responseText;
-      chrome.storage.local.set({Bias:apiReturn},function(){});
+      chrome.storage.local.set({history: apiReturn},function(){});
     }
     
     request.onreadystatechange = function()

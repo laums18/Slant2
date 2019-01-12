@@ -7,8 +7,31 @@ function clickHandler(e) {
 };
 
 function upload(){
-    var newbody = '<form class=\"md-form\"><div class=\"file-field\"><a class=\"btn-floating purple-gradient mt-0 float-left\"><i class=\"fas fa-cloud-upload-alt\"></i><input type=\"file\"></a><div class=\"file-path-wrapper\"><input class=\"file-path validate\" type=\"text\" placeholder=\"Upload your file\"></div></div></form>'
+    var newbody = `<form id="form1" action="https://www.google.com" method="get" class="md-form"><div class="file-field"><a class="btn-floating purple-gradient mt-0 float-left"><i class="fas fa-cloud-upload-alt"></i><input type="file"><a><div class="file-path-wrapper"><div></div></form><button type="submit" form="form1" value="Submit">Submit</button>`;
     document.getElementById('bodyshift').innerHTML=newbody
+};
+
+
+function overall(){
+    chrome.storage.local.get(['history'], function(result){
+      var overallSlantHTML = `<div id="bodyshift" class="containforslant">
+        <div class="card" id="cardforslant">
+            <div id="SlantTitle2" class="card-header"><h5>Overall Bias</h5><span class="titleforslant2"></span></div>
+            <div id="SlantSummary2" class="card-body">
+                <h5>Top Sites</h5><p class="summaryforslant2"></p>
+            </div>
+            <ul class="list-group list-group-flush" id="SlantKeywords2">
+                <li class="list-group-item"><h5>Source Count</h5><p class="keywordsforslant2"></p></li>
+            </ul>
+        </div>
+     </div>`;
+      document.getElementById('bodyshift').innerHTML=overallSlantHTML
+      let history = JSON.parse(result["history"]);
+      document.getElementById("SlantTitle2").querySelector('.titleforslant2').innerHTML = history.totalBias + "% " + history.party;
+      document.getElementById("SlantSummary2").querySelector('.summaryforslant2').innerHTML = history.topFive;
+      document.getElementById("SlantKeywords2").querySelector('.keywordsforslant2').innerHTML = history.sourceCount;
+    });
+    
 };
 
 // function biasview(){
@@ -40,7 +63,6 @@ port.onMessage.addListener(function(msg) {
        document.getElementById("SlantKeywords").querySelector('.keywordsforslant').innerHTML = result[tabId].keywords.slice(0, 5).join(', ');
        document.getElementById("SlantUsername").querySelector('.usernameforslant').innerHTML = result[tabId].uid;
      });
-
 });
 
 chrome.storage.local.get(['party'], function(result) {
@@ -57,5 +79,5 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('SlantPopup').addEventListener('click', biasview);
+    document.getElementById('OverallSlant').addEventListener('click', overall);
 });

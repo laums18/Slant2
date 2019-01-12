@@ -17,6 +17,7 @@ Year: 2019
 			min-width: 360px;
 			padding: 2px;
 		}
+
 .bodyforslant{
     font-family: "Avenir Next", Helvitica, sans-serif;
     width: 400px;
@@ -116,23 +117,23 @@ Year: 2019
     vertical-align: bottom;
 }
 .nothingsforslant{
-    color: #A0AAE9;
+    color: #fff;
     text-decoration: none;
 }
 .nothingsforslant:hover{
-    color: #A0AAE9;
+    color: #fff;
     text-decoration: none;
 }
 .nothingsforslant:focus{
-    color: #A0AAE9;
+    color: #fff;
     text-decoration: none;
 }
 .nothingsforslant:visited{
-    color: #A0AAE9;
+    color: #fff;
     text-decoration: none;
 }
 .nothingsforslant:active{
-    color: #A0AAE9;
+    color: #fff;
     text-decoration: none;
 }
 
