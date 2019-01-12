@@ -21,7 +21,7 @@ function overall(){
                 <h5>Top Sites</h5><p class="summaryforslant2"></p>
             </div>
             <ul class="list-group list-group-flush" id="SlantKeywords2">
-                <li class="list-group-item"><h5>Source Count</h5><p class="keywordsforslant2"></p></li>
+                <li class="list-group-item"><h5>Articles Read</h5><p class="keywordsforslant2"></p></li>
             </ul>
         </div>
      </div>`;
