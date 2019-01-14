@@ -52,14 +52,6 @@ function overall(){
     
 };
 
-// function biasview(){
-
-//        chrome.storage.local.get(apiReturn, function){
-//         //display on document.getElementById("SlantPopup") is CLICKED
-//         //MOE FILL IN UR MAGIC HERE
-//      }
-// }
-
 var port = chrome.extension.connect({
    name: "Bias Data"
 });
@@ -84,10 +76,7 @@ port.onMessage.addListener(function(msg) {
      });
 });
 
-chrome.storage.local.get(['party'], function(result) {
-  //var y = document.getElementById("SlantPopup2");
-  //y.querySelector('.partyforslant').innerHTML = result.party;
-});
+chrome.storage.local.get(['party'], function(result) {});
 
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('login_btn').addEventListener('click', clickHandler);
