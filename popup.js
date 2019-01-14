@@ -7,10 +7,28 @@ function clickHandler(e) {
 };
 
 function upload(){
-    var newbody = `<form id="form1" action="https://www.google.com" method="get" class="md-form"><div class="file-field"><a class="btn-floating purple-gradient mt-0 float-left"><i class="fas fa-cloud-upload-alt"></i><input type="file"><a><div class="file-path-wrapper"><div></div></form><button type="submit" form="form1" value="Submit">Submit</button>`;
-    document.getElementById('bodyshift').innerHTML=newbody
-};
 
+    chrome.storage.local.get(['userId'], function(result) {
+      let uid = result.userId;
+      console.log("TEST UID: " + uid);
+      let vidReq = new XMLHttpRequest(); 
+
+      vidReq.open('POST', 'https://3xe435ebm9.execute-api.us-east-2.amazonaws.com/Dev/video', true);
+      let temp =  {
+        uid: uid,
+        fileName: (+new Date).toString(36) + ".mp4"
+      };
+      console.log("OUT" + JSON.stringify(temp));
+      let output = vidReq.send(JSON.stringify(temp));
+      vidReq.onreadystatechange = function ()
+      {
+        console.log(vidReq.responseText);
+        var presignedURL = vidReq.responseText;
+        var newbody = `<form id="form1" action="https://www.google.com" method="POST" class="md-form"><div class="file-field"><a class="btn-floating purple-gradient mt-0 float-left"><i class="fas fa-cloud-upload-alt"></i><input type="file"><a><div class="file-path-wrapper"><div></div></form><button type="submit" form="form1" value="Submit">Submit</button>`;
+        document.getElementById('bodyshift').innerHTML=newbody
+      }
+    });
+};
 
 function overall(){
     chrome.storage.local.get(['history'], function(result){
@@ -47,6 +65,7 @@ var port = chrome.extension.connect({
 });
 
 port.onMessage.addListener(function(msg) {
+
      console.log("message recieved " + msg);
      var tabId = msg.toString();
      chrome.storage.local.get(tabId, function(result) {
