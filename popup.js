@@ -38,13 +38,15 @@ function upload(){
 
             document.getElementById('filename').value = filename;
             console.log(presignedURL);
-            presignedURL2 = presignedURL.slice(1, 346);
+            presignedURL2 = presignedURL.slice(1, 348);
             console.log(presignedURL2);
+
+            var file = document.getElementById('upload').files[0];
 
             $.ajax({
                 url: presignedURL2, //presinged-url which you get from server side
                 type: 'PUT',
-                data: filename,
+                data: file,
                 processData: false,
                 contentType: false,
                 headers: {'Content-Type': 'multipart/form-data'},
@@ -71,6 +73,7 @@ function overall(){
             </ul>
         </div>
      </div>`;
+
       document.getElementById('bodyshift').innerHTML=overallSlantHTML
       let history = JSON.parse(result["history"]);
       document.getElementById("SlantTitle2").querySelector('.titleforslant2').innerHTML = history.totalBias + "% " + history.party;
@@ -79,14 +82,6 @@ function overall(){
     });
     
 };
-
-// function biasview(){
-
-//        chrome.storage.local.get(apiReturn, function){
-//         //display on document.getElementById("SlantPopup") is CLICKED
-//         //MOE FILL IN UR MAGIC HERE
-//      }
-// }
 
 var port = chrome.extension.connect({
    name: "Bias Data"
