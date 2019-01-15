@@ -42,7 +42,7 @@ function upload(){
 
             $.ajax({
                 url: presignedURL, //presinged-url which you get from server side
-                type: 'POST',
+                type: 'PUT',
                 data: filename,
                 processData: false,
                 contentType: false,
