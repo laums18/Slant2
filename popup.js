@@ -38,10 +38,11 @@ function upload(){
 
             document.getElementById('filename').value = filename;
             console.log(presignedURL);
-            //presignedURL = '<%=@Url.Action("") %>'
+            presignedURL2 = presignedURL.slice(1, 346);
+            console.log(presignedURL2);
 
             $.ajax({
-                url: presignedURL, //presinged-url which you get from server side
+                url: presignedURL2, //presinged-url which you get from server side
                 type: 'PUT',
                 data: filename,
                 processData: false,
