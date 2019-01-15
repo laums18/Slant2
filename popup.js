@@ -38,7 +38,7 @@ function upload(){
 
             document.getElementById('filename').value = filename;
             console.log(presignedURL);
-            presignedURL2 = presignedURL.slice(1, 348);
+            presignedURL2 = presignedURL.slice(1,-1)
             console.log(presignedURL2);
 
             var file = document.getElementById('upload').files[0];
