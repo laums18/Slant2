@@ -54,37 +54,6 @@ function upload(){
                 
             });
         }
-        
-        var oldbody = 
-        `<html>
-          <head>
-            
-            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-            
-          </head>
-          <body>
-
-          <form  action="https://s3.us-east-2.amazonaws.com/youtubedownloadsslant/" method="post" enctype="multipart/form-data">
-            Key to upload: 
-            <input type="input"  name="key" value="antpas/hi.jpg" /><br />
-            <input type="hidden" name="success_action_redirect" value="http://www.psalabs.us" />
-            Content-Type: 
-            <input type="input"  name="Content-Type" value="image/jpeg" /><br />
-            <input type="hidden" name="x-amz-server-side-encryption" value="AES256" /> 
-            <input type="text"   name="X-Amz-Credential" value="AKIAJZSV6TCY3Q6532LA/20190114/us-east-2/s3/aws4_request" />
-            <input type="text"   name="X-Amz-Algorithm" value="AWS4-HMAC-SHA256" />
-            <input type="text"   name="X-Amz-Date" value="20190114T222019Z" />
-
-            Tags for File: 
-            <input type="input"  name="x-amz-meta-tag" value="" /><br />
-            <input type="hidden" name="Policy" value="eyJleHBpcmF0aW9uIjoiMjAxOS0wMS0xNFQyMzoyMDoxOVoiLCJjb25kaXRpb25zIjpbeyJrZXkiOiJhbnRwYXMvaGkuanBnIn0seyJidWNrZXQiOiJ5b3V0dWJlZG93bmxvYWRzc2xhbnQifSx7IlgtQW16LUFsZ29yaXRobSI6IkFXUzQtSE1BQy1TSEEyNTYifSx7IlgtQW16LUNyZWRlbnRpYWwiOiJBS0lBSlpTVjZUQ1kzUTY1MzJMQS8yMDE5MDExNC91cy1lYXN0LTIvczMvYXdzNF9yZXF1ZXN0In0seyJYLUFtei1EYXRlIjoiMjAxOTAxMTRUMjIyMDE5WiJ9XX0" />
-            <input type="hidden" name="X-Amz-Signature" value="381f5640c4aa30a7f501624748496f00b0bd05df4be496e198897688666b1a4b" />
-            File: 
-            <input type="file"   name="file" /> <br />
-            <!-- The elements after this will be ignored -->
-            <input type="submit" name="submit" value="Upload to Amazon S3" />
-          </form>
-        </html>`
       }
     });
 };
