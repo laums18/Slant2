@@ -111,7 +111,7 @@ port.onMessage.addListener(function(msg) {
      chrome.storage.local.get(tabId, function(result) {
 
        var x = document.getElementById("SlantPopup");
-       let outProb = ((result[tabId].prob - 50)) * 2
+       let outProb = ((result[tabId].prob - 50) * 2);
        x.querySelector('.scoreforslant').innerHTML = outProb + "%"; //current way to display labels in popup
 
        var y = document.getElementById("SlantPopup2");
