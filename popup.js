@@ -24,8 +24,16 @@ function upload(){
       {
         console.log(vidReq.responseText);
         var presignedURL = vidReq.responseText;
-        var newbody = `<input id="upload" type="file" />
-                         <input id="filename" type="text" />`
+        var newbody = `<h3 class="slantvideoheader">Slant Video<small>   Beta</small></h3>
+                      <div class="zabodee">
+                      <div class="slantinput-group mb-3">
+                        <div class="custom-file">
+                          <input id="upload" type="file" class="custom-file-input">
+                          <label class="custom-file-label" id="filename">Choose file</label> 
+                      </div>
+                        </div>
+                      </div>
+                      </div>`
         document.getElementById('bodyshift').innerHTML=newbody
         document.getElementById('upload').onchange = uploadOnChange;
 

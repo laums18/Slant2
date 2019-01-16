@@ -175,3 +175,48 @@ Year: 2019
 .list-group{
     margin-bottom: 0px !important;
 }
+.list-group-item{
+    margin-bottom: 0px !important;
+}
+.list-group-flush{
+    margin-bottom: 0px !important;
+}
+.input-group{
+    position: relative;
+    display: flex;
+    border-collapse: separate;
+
+}
+.slantvideoheader{
+    text-align: center;
+}
+.custom-file-label {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    font-weight: 400;
+}
+.custom-file-input {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    margin: 0;
+    opacity: 0;
+}
+.zabodee{
+    /*border: .5px solid black;*/
+    height: 200px;
+    width: 350px;%;
+    border-radius: 10%;
+    margin: auto;
+}
